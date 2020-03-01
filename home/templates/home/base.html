@@ -20,11 +20,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            {% for name, age in mainm.items %}
+            {% for name, link in mainm.items %}
                 <li class="nav-item"><a class="nav-link" href="{{link}}">{{name}}</a></li>
             {% endfor %}
+                <li class="nav-item"><a class="nav-link disabled" href="http://vstu.ru" target='_blank'>Сайт ВолгГТУ</a></li>
 
-            {{ main_menu }}
 <!--
             <li class="nav-item active">
               <a class="nav-link" href="/about/">О кафедре<span class="sr-only">(current)</span></a>
@@ -56,17 +56,23 @@
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Поиск google" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" style="color:#1976d2; border-color: #1976d2;" type="submit">Поиск</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" style="color:#1976d2; border-color: #1976d2;" type="submit" href="google.ru">Поиск</button>
           </form>
         </div>
       </nav>
     </header>
 
     <main>
-      <div class="container-fluid mt-2">
+      <div class="container-fluid mt-2">{% if request.path == url %} class="active"{% endif %}
         <div class="row">
           <div class="col-lg-3 col-xl-2"> <!-- style="background-color: #1976d2;"-->
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              {% for name, link in leftm.items %}
+                  <a class="nav-link {% if link == request.path %} active {% endif %}" id="v-pills-home-tab" href="{{link}}" role="tab" aria-controls="v-pills-home"
+                  aria-selected="true">{{name}}</a>
+              {% endfor %}
+
+<!--
               <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
               aria-selected="true">История</a>
               <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
@@ -75,18 +81,21 @@
               aria-selected="false">Подготовленные кадры</a>
               <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
               aria-selected="false">Для студентов</a>
+-->
             </div>
           </div>
           <div class="col-lg-6 col-xl-7">
-            {% block page_content %}
-            {% endblock page_content %}
-            <h2>Кафедра "Безопасность жизнедеятельности в строительстве и городском хозяйстве" (БЖСиГХ)</h2>
-            <h4>Институт архитектуры и строительства ВолгГТУ</h4>
-            <p>В соответствии с решением Ученого совета университета от 27.03.2006 г. с июля 2006 г. организована кафедра «Безопасности жизнедеятельности в техносфере» (БЖДвТ).
+            {{page_content|safe}}
 
-Заведующий кафедрой — Азаров В.Н. д.т.н., профессор, доктор технических наук, профессор, Заслуженный эколог РФ, Лауреат премии правительства РФ в области образования, советник РААСН.</p>
+
+            <p class="float-right">
+              Последнее изменение: {{last_updated|date:'d.m.Y'}}
+            </p>
+
+            <!--
+
             <h2>Основные научные направления кафедры</h2>
-
+-->
           </div>
           <div class="col-lg-3 col-xl-3 jumbotron">
             Advertise
