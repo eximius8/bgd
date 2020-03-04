@@ -8,7 +8,6 @@ class NewsItem(models.Model):
     newsText = models.TextField()
     datePublished = models.DateField()
 
-
 class LeftMenu(models.Model):
     menuName = models.CharField(max_length=30)
     menuUrl = models.CharField(max_length=30,blank=True)
@@ -49,3 +48,14 @@ class SitePost(models.Model):
             return "Дефолт для меню - " + self.leftMenu.menuName + ": " + self.postTitle
         else:
             return "Дефолт для начальной страницы: " + self.postTitle
+'''
+class Equipment(models.Model):
+    name = models.CharField(max_length=50)
+    leftMenuName = models.CharField(max_length=30)
+    description = models.TextField()
+    urlLink = models.CharField(max_length=250)
+    lastUpdated = models.DateField()
+
+    def __str__(self):
+        return self.name
+'''

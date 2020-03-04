@@ -14,11 +14,11 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #eceff1; color:#1976d2;">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="collapse navbar-collapse" id="navbarToggler">
           <ul class="navbar-nav mr-auto">
             <a class="navbar-brand" href="/">Кафедра БЖСиГХ</a>
             {% for name, link in mainm.items %}
@@ -56,9 +56,10 @@
             </li>
 -->
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Поиск google" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" style="color:#1976d2; border-color: #1976d2;" type="submit" href="google.ru">Поиск</button>
+          <form class="form-inline my-2 my-lg-0" action="https://www.google.ru/search" method="get" name="searchform" target="_blank">
+            <input name="sitesearch" type="hidden" value="bgd.vstu.ru">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск google" aria-label="Search" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="color:#1976d2; border-color: #1976d2;" type="submit">Поиск</button>
           </form>
         </div>
       </nav>
@@ -113,16 +114,16 @@
           Разработка сайта: mikhail.trunov@gmail.com
         </div>
         <div class="row" style="height: 300px;">
-          <div class="col-lg-3 pt-4">
+          <div class="col-lg-4 pt-4 d-none d-md-block">
             <a href="http://vstu.ru" target="_blank"><img src="http://vstu.ru/bitrix/templates/mfrog/images/logo.png" alt="ВолгГТУ" width="260"></a>
           </div>
-          <div class="col-lg-3 pt-4">
+          <div class="col-lg-4 pt-4 d-none d-md-block">
             <a href="http://vgasu.ru" target="_blank"><img src="http://vgasu.ru/images/title.png" width="380" height="85" alt="ИАиС ВолГТУ" title="Институт архитектуры и строительства ВолгГТУ"></a>
 <!--
             <a href="https://www.minobrnauki.gov.ru/" target="_blank"><img class="mh-100" src="https://www.minobrnauki.gov.ru/common/upload/min-obr-header.png" alt="" class="logoimage"></a>
 -->
           </div>
-          
+
         </div>
       </div>
     </footer>
