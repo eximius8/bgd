@@ -17,11 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
-
+handler404 = 'home.views.view_404'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),    
-    path('', include('home.urls'), name='home'),
+    url(r'^admin/', admin.site.urls),
+    path('', include('home.urls')),
     #path('equipment/', include('equipment.urls')),
     #path('people/', include('people.urls')),
     #path('science/', include('science.urls')),

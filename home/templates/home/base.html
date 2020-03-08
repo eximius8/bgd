@@ -24,37 +24,6 @@
             {% for name, link in mainm.items %}
                 <li class="nav-item"><a class="nav-link" href="{{link}}">{{name}}</a></li>
             {% endfor %}
-
-
-
-<!--
-            <li class="nav-item active">
-              <a class="nav-link" href="/about/">О кафедре<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Наука</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Люди
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Заведующий кафедрой</a>
-                <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Профессор Батманов</a>
-                  <a class="dropdown-item" href="#">Профессор Боровков</a>
-                  <a class="dropdown-item" href="#">Профессор Сидельникова</a>
-                  <a class="dropdown-item" href="#">Профессор Стрекалов</a>
-                  <a class="dropdown-item" href="#">Профессор Тертишников</a>
-                <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Доценты и преподаватели</a>
-                  <a class="dropdown-item" href="#">Аспиранты</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Лаборатория</a>
-            </li>
--->
           </ul>
           <form class="form-inline my-2 my-lg-0" action="https://www.google.ru/search" method="get" name="searchform" target="_blank">
             <input name="sitesearch" type="hidden" value="eximius8.pythonanywhere.com">
@@ -67,41 +36,35 @@
 
     <main>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3 col-xl-2 mt-2"> <!-- style="background-color: #1976d2;"-->
+        <div class="row pr-2 pt-2">
+          <div class="col-lg-3 col-xl-2 mt-1"> <!-- style="background-color: #1976d2;"-->
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               {% for name, link in leftm.items %}
                   <a class="nav-link {% if link == request.path %} active {% endif %}" id="v-pills-home-tab" href="{{link}}" role="tab" aria-controls="v-pills-home"
                   aria-selected="true">{{name}}</a>
               {% endfor %}
 
-<!--
-              <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-              aria-selected="true">История</a>
-              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-              aria-selected="false">Научные направления</a>
-              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-              aria-selected="false">Подготовленные кадры</a>
-              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-              aria-selected="false">Для студентов</a>
--->
             </div>
           </div>
-          <div class="col-lg-6 col-xl-7 mt-2">
-            {{page_content|safe}}
+          <div class="col-lg-6 col-xl-7 mt-1">
+            {% if simple %}
+              {{page_content|safe}}
+            {% else %}
+              {% include "home/main.html" with mitems=mitems %}
+            {% endif %}
+
+
 
 
             <p class="float-right">
               Последнее изменение: {{last_updated|date:'d.m.Y'}}
             </p>
 
-            <!--
-
-            <h2>Основные научные направления кафедры</h2>
--->
           </div>
-          <div class="col-lg-3 col-xl-3 jumbotron mt-2">
-            Advertise
+          <div class="col-lg-3 col-xl-3 mt-1 mb-2 text-center" >
+            {% include "home/rightpanel.html" with rheader=rheader ritems=ritems %}
+
+
           </div>
         </div>
       </div>

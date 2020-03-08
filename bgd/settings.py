@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gd8^v&m86hcz)k6w=8zom2+#aazqn^+clvfz^wca7jb!f%&_*e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True
 
-ALLOWED_HOSTS = ['eximius8.pythonanywhere.com']
+ALLOWED_HOSTS = ['eximius8.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 

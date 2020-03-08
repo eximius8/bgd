@@ -30,6 +30,15 @@ class LeftMenu(models.Model):
                 Leftm[name]=prefix+self.menuUrl+'/'
         return Leftm
 
+    def leftMenuEqDict(self):
+        Equipments = Equipment.objects.all().order_by('name')
+        Leftm = self.leftMenuDict()
+        for pitem in Equipments:
+            link=pitem.postUrl
+            name=pitem.leftMenuName
+            Leftm[name]='/'+self.menuUrl+'/'+link+'/'
+        return Leftm
+
 
 
 class SitePost(models.Model):
@@ -48,14 +57,19 @@ class SitePost(models.Model):
             return "Дефолт для меню - " + self.leftMenu.menuName + ": " + self.postTitle
         else:
             return "Дефолт для начальной страницы: " + self.postTitle
-'''
+
 class Equipment(models.Model):
     name = models.CharField(max_length=50)
+    manufact = models.CharField(max_length=50)
     leftMenuName = models.CharField(max_length=30)
+    urlimage = models.CharField(max_length=250)
+    postUrl = models.CharField(max_length=30, blank=True)
+    figureCaption = models.CharField(max_length=300, blank=True)
     description = models.TextField()
-    urlLink = models.CharField(max_length=250)
+    longDescription = models.TextField(blank=True)
     lastUpdated = models.DateField()
+
+
 
     def __str__(self):
         return self.name
-'''

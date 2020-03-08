@@ -1,0 +1,17 @@
+
+<h2>{{post_title}}</h2>
+<h4>{{manufact}}</h4>
+<div class="row">
+  <figure class="figure figure-img col-md-6 rounded">
+    <img src="{{urlimage}}" class="figure-img img-fluid rounded" alt="{{post_title}} {{manufact}}">
+    <figcaption class="figure-caption">{{figureCaption}}</figcaption>
+  </figure>
+  <div class="col-md-6">
+    {{description|safe}}
+  </div>
+</div>
+{% if longdescription %}
+<div class="row">
+  {{longdescription|safe}}
+</div>
+{% endif %}
