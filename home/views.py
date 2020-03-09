@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from home.models import LeftMenu, SitePost, Equipment
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponseRedirect
+import random as rnd
 
 
 def view_404(request, exception=None):
@@ -20,18 +21,20 @@ def hauptMenu():
         menuT[name]="/"+link
     return menuT
 
-def eqarray():
+def eqarray(simple=True):
     pageArray={}
     pageArray['rheader']="Наше оборудование"
     pageArray['ritems']={}
-    act=True
-    for tool in Equipment.objects.all():
-        if act:
+    allequip = Equipment.objects.all()
+    act=rnd.randint(0,len(allequip)-1)
+    counter=0
+    for tool in allequip:
+        if counter==act:
             pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': 'active'}
-            act=False
         else:
             pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': ''}
-    pageArray['simple']=True
+        counter=counter+1
+    pageArray['simple']=simple
     return pageArray
 
 
@@ -63,18 +66,11 @@ def LabPost(request, toolu=''):
             return HttpResponseRedirect('/lab/')
 
 
-    pageArray['rheader']="Наше оборудование"
-    pageArray['ritems']={}
-    act=True
-    for tool in Equipment.objects.all():
-        if act:
-            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': 'active'}
-            act=False
-        else:
-            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': ''}
+    pageArray2=eqarray(False)
+    pageArray1={**pageArray2, **pageArray}
 
 
-    return render(request, 'home/base.html', pageArray)
+    return render(request, 'home/base.html', pageArray1)
 
 
 
@@ -112,7 +108,6 @@ def SimplePost(request,lmenu='',postname=''):
         pageArray['page_content']=PostObj.postText
         pageArray['last_updated']=PostObj.LastUpdated
 
-    eq1=Equipment.objects.all().first()
     pageArray2=eqarray()
     pageArray1={**pageArray2, **pageArray}
 

@@ -1,6 +1,21 @@
 <!doctype html>
 <html lang="ru">
   <head>
+    <style>
+      html, body {
+                    height: 100%;
+                  }
+      body {
+              background: #ffffff;
+              display: flex;
+              flex-flow: column;
+            }
+      footer {
+                margin-top: auto;
+                background: #292e33;
+                color: #ccc;
+              }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,7 +52,7 @@
     <main>
       <div class="container-fluid">
         <div class="row pr-2 pt-2">
-          <div class="col-lg-3 col-xl-2 mt-1"> <!-- style="background-color: #1976d2;"-->
+          <div class="col-lg-3 col-xl-2 mt-1">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               {% for name, link in leftm.items %}
                   <a class="nav-link {% if link == request.path %} active {% endif %}" id="v-pills-home-tab" href="{{link}}" role="tab" aria-controls="v-pills-home"
@@ -53,9 +68,6 @@
               {% include "home/main.html" with mitems=mitems %}
             {% endif %}
 
-
-
-
             <p class="float-right">
               Последнее изменение: {{last_updated|date:'d.m.Y'}}
             </p>
@@ -63,34 +75,25 @@
           </div>
           <div class="col-lg-3 col-xl-3 mt-1 mb-2 text-center" >
             {% include "home/rightpanel.html" with rheader=rheader ritems=ritems %}
-
-
           </div>
         </div>
       </div>
     </main>
 
-
-    <footer style="height: 300px; background-color: #eceff1; color:#1976d2;">
-      <div class="container-fluid pb-4 pt-4">
-        <div class="col-lg-8">
-          Разработка сайта: mikhail.trunov@gmail.com
+    <footer class="footer container-fluid">
+      <div class="row pt-4">
+        <div class="col-lg-6">
+          <p>Кафедра: <strong>Безопасность жизнедеятельности в строительстве и городском хозяйстве</strong></p>
+          <p>Институт архитектуры и строительства</p>
+          <p>Волгоградский государственный технический университет</p>
         </div>
-        <div class="row" style="height: 300px;">
-          <div class="col-lg-4 pt-4 d-none d-md-block">
-            <a href="http://vstu.ru" target="_blank"><img src="http://vstu.ru/bitrix/templates/mfrog/images/logo.png" alt="ВолгГТУ" width="260"></a>
-          </div>
-          <div class="col-lg-4 pt-4 d-none d-md-block">
-            <a href="http://vgasu.ru" target="_blank"><img src="http://vgasu.ru/images/title.png" width="380" height="85" alt="ИАиС ВолГТУ" title="Институт архитектуры и строительства ВолгГТУ"></a>
-<!--
-            <a href="https://www.minobrnauki.gov.ru/" target="_blank"><img class="mh-100" src="https://www.minobrnauki.gov.ru/common/upload/min-obr-header.png" alt="" class="logoimage"></a>
--->
-          </div>
-
+        <div class="col-lg-6">
+          <p>400074, Волгоград, ул. Академическая, 1, к. 3-601а</p>
+          <p>+7 (8442) 96-99-07</p>
+          <p>kafedra_bgd@vgasu.ru</p>
         </div>
       </div>
     </footer>
-
 
 
     <!-- Optional JavaScript -->
