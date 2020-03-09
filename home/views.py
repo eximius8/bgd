@@ -20,6 +20,22 @@ def hauptMenu():
         menuT[name]="/"+link
     return menuT
 
+def eqarray():
+    pageArray={}
+    pageArray['rheader']="Наше оборудование"
+    pageArray['ritems']={}
+    act=True
+    for tool in Equipment.objects.all():
+        if act:
+            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': 'active'}
+            act=False
+        else:
+            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': ''}
+    pageArray['simple']=True
+    return pageArray
+
+
+
 def LabPost(request, toolu=''):
     pageArray={}
     mainM=hauptMenu()
@@ -96,15 +112,8 @@ def SimplePost(request,lmenu='',postname=''):
         pageArray['page_content']=PostObj.postText
         pageArray['last_updated']=PostObj.LastUpdated
 
-    pageArray['rheader']="Наше оборудование"
-    pageArray['ritems']={}
-    act=True
-    for tool in Equipment.objects.all():
-        if act:
-            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': 'active'}
-            act=False
-        else:
-            pageArray['ritems'][tool.name]={'manufact': tool.manufact, 'urlimage': tool.urlimage, 'urlmenu': tool.postUrl, 'act': ''}
-    pageArray['simple']=True
+    eq1=Equipment.objects.all().first()
+    pageArray2=eqarray()
+    pageArray1={**pageArray2, **pageArray}
 
-    return render(request, 'home/base.html', pageArray)
+    return render(request, 'home/base.html', pageArray1)
