@@ -25,7 +25,7 @@ SECRET_KEY = 'gd8^v&m86hcz)k6w=8zom2+#aazqn^+clvfz^wca7jb!f%&_*e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['eximius8.pythonanywhere.com']
+ALLOWED_HOSTS = ['eximius8.pythonanywhere.com', '*']
 
 
 # Application definition
